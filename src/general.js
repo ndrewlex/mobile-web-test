@@ -9,6 +9,7 @@ export const WrapperStyled = styled.div`
   border-radius: 10px;
   text-align: left;
   width: 40vw;
+  min-width: 500px;
   input {
     margin-right: 20px;
     border: 2px solid #cacaca;
