@@ -1,43 +1,44 @@
 import styled from "styled-components";
 
-export const WrapperStyled = styled.div`
-  padding: 20px 40px;
-  background: white;
-  padding-bottom: 100px;
-  margin: 30px auto;
-  border: 5px solid #e9e9e9;
-  border-radius: 10px;
-  text-align: left;
-  width: 40vw;
-  min-width: 500px;
+export const Row = styled.div`
+  margin-bottom: 30px;
+`
+
+export const FlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: -20px;
+  >div{
+    margin-top: 20px;
+  }
+`
+
+export const Form = styled.form`
+  .label {
+    margin-bottom: 10px;
+  }
   input {
     margin-right: 20px;
     border: 2px solid #cacaca;
     border-radius: 4px;
     padding: 8px 12px;
   }
-  .row {
-    margin-top: 40px;
-    :first-of-type {
-      margin-bottom: 0;
-    }
+`
+export const BorderBox = styled.div`
+  padding: 20px 40px;
+  background: white;
+  margin: 30px auto;
+  border: 4px solid #e9e9e9;
+  border-radius: 10px;
+  text-align: left;
+  width: 45%;
+  .title{
+    margin-bottom: 40px;
   }
-  .flex {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 20px;
-  }
-
   button {
     background-color: #42b549;
     border-color: #42b549;
-    border-width: 0;
     color: #fff;
     padding: 8px 30px;
     border-radius: 4px;
@@ -47,7 +48,7 @@ export const WrapperStyled = styled.div`
       opacity: 0.8;
     }
   }
-  input {
-    padding: 8px 12px;
-  }
+  @media (max-width: 975px) {
+    width: 70%;
+  } 
 `;

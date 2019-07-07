@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { WrapperStyled } from "./general";
+import { BorderBox, FlexRow, Form, Row  } from "./general";
 import "./styles.css";
 
 function App() {
@@ -13,19 +13,15 @@ function App() {
     const toLowerCasePrice = price.toLowerCase();
     let status = false;
     let convertedPrice = price;
-
-    if (
-      toLowerCasePrice.includes("rp") &&
-      toLowerCasePrice.indexOf("rp") === 0
-    ) {
+    let isRpExist = toLowerCasePrice.includes("rp")
+    if ( isRpExist && toLowerCasePrice.indexOf("rp") === 0 )
+    {
       status = true;
-      convertedPrice = toLowerCasePrice.replace(new RegExp("rp", "g"), "");
+      convertedPrice = toLowerCasePrice.replace(new RegExp("rp", "g"), "")
+        .replace(/\./g, "")
+        .replace(/,00/g, "")
+        .replace(/\s/g, "");;
     }
-
-    convertedPrice = convertedPrice
-      .replace(/\./g, "")
-      .replace(/,00/g, "")
-      .replace(/\s/g, "");
 
     if (isNaN(convertedPrice) || convertedPrice === "") {
       status = false;
@@ -50,6 +46,7 @@ function App() {
     e.preventDefault();
     clearResult();
     const { status, price } = validateValue(e.target["price"].value);
+    setPrice(price);
     if (status) {
       let result = [];
       let remained = price;
@@ -80,47 +77,62 @@ function App() {
     }
   };
 
+  // const onChangePrice = (e) => {
+  //   const value = e.target.value;
+  //   setPrice(value);
+  // }
+
   return (
     <div className="App">
       <div>
         <p>Name: Andrew Alexander</p>
         <p>Email: bdrewsands@gmail.com</p>
         <p>
-          <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DADYtwbBj5Q&#x2F;view?utm_content=DADYtwbBj5Q&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener"> CV
+          <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DADYtwbBj5Q&#x2F;view?utm_content=DADYtwbBj5Q&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener noreferrer"> CV
             Andrew Alexander
           </a>
         </p>
       </div>
-      <WrapperStyled>
-        <h1>Software Engineer Mobile Web Test</h1>
-        <form onSubmit={onSubmit}>
-          <div className="row flex">
-            <div className="flex-column">
+      <BorderBox>
+        <h1 className="title">Software Engineer Mobile Web Test</h1>
+        <Form onSubmit={onSubmit}>
+          <Row>
+            <div className="label">
               <label>Price (Rp)</label>
             </div>
-            <input
-              name="price"
-              type="text"
-              onChange={e => setPrice(e.target.value)}
-              value={price}
-              placeholder="ex: Rp 100.xxx"
-              required
-            />
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-        <div className="row">
-          <h3>Result: </h3>
-          {result.map((item, index) => (
-            <div key={`item-${index}`}>
-              <p>
-                {item.value} x {item.amount}
-              </p>
-            </div>
-          ))}
-          {remained !== null && <p>Left {remained} (no available fraction)</p>}
-        </div>
-      </WrapperStyled>
+            <FlexRow>
+              <div>
+                <input
+                  name="price"
+                  type="text"
+                  // onChange={onChangePrice}
+                  defaultValue={price}
+                  placeholder="ex: Rp 100.xxx"
+                  required
+                />
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+            </FlexRow>
+          </Row>
+        </Form>
+        <Row>
+          {result.length > 0 && 
+            <>
+              <h4>Result from Rp {new Intl.NumberFormat("de-ID").format(price)}: </h4>
+              {result.map((item, index) => (
+                <div key={`item-${index}`}>
+                  <p>
+                    {item.value} x {item.amount}
+                  </p>
+                </div>
+              ))}
+              {remained !== null && <p>Left Rp {new Intl.NumberFormat("de-ID").format(remained)} (no available fraction)</p>}
+            </>
+          }
+        </Row>
+      </BorderBox>
     </div>
   );
 }
