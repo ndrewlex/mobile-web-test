@@ -10,30 +10,29 @@ function App() {
   const rules = [100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 100, 50];
 
   const validateValue = price => {
-    const toLowerCasePrice = price.toLowerCase();
+    let toLowerCasePrice = price.toLowerCase().toString();
     let status = false;
-    let convertedPrice = price;
     let isRpExist = toLowerCasePrice.includes("rp")
     if ( isRpExist && toLowerCasePrice.indexOf("rp") === 0 )
     {
       status = true;
-      convertedPrice = toLowerCasePrice.replace(new RegExp("rp", "g"), "")
+      toLowerCasePrice = toLowerCasePrice.replace(new RegExp("rp", "g"), "")
         .replace(/\./g, "")
         .replace(/,00/g, "")
         .replace(/\s/g, "");;
     }
 
-    if (isNaN(convertedPrice) || convertedPrice === "") {
+    if (isNaN(toLowerCasePrice) || toLowerCasePrice === "") {
       status = false;
       alert("Price must be a valid number");
     } else {
       status = true;
-      convertedPrice = convertedPrice.replace(/\s/g, "");
+      toLowerCasePrice = toLowerCasePrice.replace(/\s/g, "");
     }
 
     return {
       status,
-      price: parseInt(convertedPrice)
+      price: parseInt(toLowerCasePrice)
     };
   };
 
@@ -94,7 +93,7 @@ function App() {
         </p>
       </div>
       <BorderBox>
-        <h1 className="title">Software Engineer Mobile Web Test</h1>
+        <h2 className="title">Software Engineer Mobile Web Test</h2>
         <Form onSubmit={onSubmit}>
           <Row>
             <div className="label">
