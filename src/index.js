@@ -12,8 +12,7 @@ function App() {
   const validateValue = price => {
     let toLowerCasePrice = price.toLowerCase().toString();
     let status = false;
-    let isRpExist = toLowerCasePrice.includes("rp")
-    if ( isRpExist && toLowerCasePrice.indexOf("rp") === 0 )
+    if (isRpExist && toLowerCasePrice.indexOf("rp") === 0)
     {
       status = true;
       toLowerCasePrice = toLowerCasePrice.replace(new RegExp("rp", "g"), "")
@@ -93,7 +92,7 @@ function App() {
         </p>
       </div>
       <BorderBox>
-        <h2 className="title">Software Engineer Mobile Web Test</h2>
+        <h1 className="title">Mobile Web Test</h1>
         <Form onSubmit={onSubmit}>
           <Row>
             <div className="label">
