@@ -4,10 +4,11 @@ export const WrapperStyled = styled.div`
   padding: 20px 40px;
   background: white;
   padding-bottom: 100px;
-  margin: 30px 30px 60px 30px;
+  margin: 30px auto;
   border: 5px solid #e9e9e9;
   border-radius: 10px;
   text-align: left;
+  width: 40vw;
   input {
     margin-right: 20px;
     border: 2px solid #cacaca;
