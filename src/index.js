@@ -85,6 +85,11 @@ function App() {
       <div>
         <p>Name: Andrew Alexander</p>
         <p>Email: bdrewsands@gmail.com</p>
+        <p>
+          <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DADYtwbBj5Q&#x2F;view?utm_content=DADYtwbBj5Q&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener"> CV
+            Andrew Alexander
+          </a>
+        </p>
       </div>
       <WrapperStyled>
         <h1>Software Engineer Mobile Web Test</h1>
