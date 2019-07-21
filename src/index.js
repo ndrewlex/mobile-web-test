@@ -12,7 +12,7 @@ function App() {
   const validateValue = price => {
     let toLowerCasePrice = price.toLowerCase().toString();
     let status = false;
-    if (isRpExist && toLowerCasePrice.indexOf("rp") === 0)
+    if (toLowerCasePrice.indexOf("rp") === 0)
     {
       status = true;
       toLowerCasePrice = toLowerCasePrice.replace(new RegExp("rp", "g"), "")
@@ -28,7 +28,7 @@ function App() {
       status = true;
       toLowerCasePrice = toLowerCasePrice.replace(/\s/g, "");
     }
-
+    
     return {
       status,
       price: parseInt(toLowerCasePrice)
